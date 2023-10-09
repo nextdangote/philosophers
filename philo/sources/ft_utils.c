@@ -11,7 +11,7 @@ void    ft_print_action(char *str, t_philo *philo, int i)
     struct timeval current_time;
     gettimeofday(&current_time, NULL);
     pthread_mutex_lock(&philo[i].lock);
-    printf("%lu ", current_time.tv_usec - philo->start_time);
+    printf("%lu ", get_proper_time() - philo->start_time);
     printf("%d ", i);
     printf("%s", str);
     pthread_mutex_unlock(&philo[i].lock);
@@ -44,4 +44,14 @@ void ft_pjoin(t_philo *philo, pthread_t *threads)
         pthread_join(threads[i], NULL);
         i++;
     }
+}
+
+int get_proper_time()
+{
+    struct timeval time_struct;
+    int time;
+
+    gettimeofday(&time_struct, NULL);
+    time = time_struct.tv_sec + time_struct.tv_usec ;
+    return(time);
 }

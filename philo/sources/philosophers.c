@@ -67,11 +67,16 @@ int main(int argc, char **argv)
 		ft_error_message(E_WRONGINPUT);
 	ft_check_arg(argc , argv);
 	// il faudrait initialiser des mutexs dont je ne comprend pas l'utilite encore
+	threads = ft_create_threads(ft_atoi(argv[1]));
 	philo = ft_init_philos(forks, philo, argc, argv);
-	printf("id : %d\n", philo[0].index);
-	printf("id : %d\n", philo[3].index);
-	//ft_init_forks(forks, ft_atoi(argv[1]), philo, argv);
-	// ft_threading(threads, philo);
+	// printf("id : %d\n", philo[0].index);
+	// printf("id : %d\n", philo[3].index);
+	// printf("id : %zu\n", philo[0].start_time);
+	// printf("id : %zu\n", philo[4].start_time);
+	// printf("id : %d\n", philo[3].amount);
+	// printf("id : %zu\n", philo[3].time_to_die);
+	// ft_init_forks(forks, ft_atoi(argv[1]), philo, argv);
+	ft_threading(threads, philo);
 	// ft_pjoin(philo, threads);
 	// ft_destroy(philo->amount, philo);
 	return 0;
